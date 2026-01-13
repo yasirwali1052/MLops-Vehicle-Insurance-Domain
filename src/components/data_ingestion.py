@@ -92,12 +92,6 @@ class DataIngestion:
             dataframe = self.export_data_into_feature_store()
 
             logging.info("Got the data from mongodb")
-            
-            # Validate dataframe is not empty
-            if dataframe.empty or len(dataframe) == 0:
-                error_message = f"No data found in MongoDB collection '{self.data_ingestion_config.collection_name}'. Please ensure data exists in the collection before running the pipeline."
-                logging.error(error_message)
-                raise ValueError(error_message)
 
             self.split_data_as_train_test(dataframe)
 
